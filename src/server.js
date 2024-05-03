@@ -39,10 +39,10 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 var config = {
-    user: 'postgres',
-    host: 'localhost', 
-    database: 'product_admin',   
-    password: 'password',
+    user: 'ua261ode3rta9v',
+    host: 'ce1r1ldap2qd4b.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com', 
+    database: 'd2m9in89i2llrk',   
+    password: 'p8afbf3922c7fa691d3c68ece4f172dc6ef26c3315e6afa350f24356d9d4632e8',
     port: '5432'    
   };
 
