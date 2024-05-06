@@ -5,15 +5,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Product Admin - Dashboard HTML Template</title>
+    <title>ALDEA MODA / e-commerse Ropa Mujer - Hombre - Niño - Niña</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
-    <!-- https://fonts.google.com/specimen/Roboto -->
     <link rel="stylesheet" href="static/product-admin/css/fontawesome.min.css">
-    <!-- https://fontawesome.com/ -->
     <link rel="stylesheet" href="static/product-admin/css/bootstrap.min.css">
-    <!-- https://getbootstrap.com/ -->
     <link rel="stylesheet" href="static/product-admin/css/templatemo-style.css">
+    <style>
+        body {
+            background-color: #343a40;
+            color: #ffffff;
+            font-family: 'Roboto', sans-serif;
+        }
 
+        .navbar {
+            background-color: #212529 !important;
+        }
+
+        .navbar-brand {
+            color: #ffffff !important;
+        }
+
+        .navbar-toggler {
+            border-color: #ffffff !important;
+        }
+
+        .navbar-nav .nav-link {
+            color: #ffffff !important;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ffffff !important;
+        }
+
+        .navbar-nav .nav-item.active .nav-link {
+            color: #ffffff !important;
+        }
+
+        .tm-footer {
+            background-color: #212529;
+            color: #ffffff;
+        }
+
+        .tm-footer a {
+            color: #ffffff;
+        }
+
+        .tm-footer a:hover {
+            color: #ffffff;
+        }
+
+        .tm-bg-primary-dark {
+            background-color: #212529 !important;
+            border-color: #212529 !important;
+        }
+
+        .tm-site-title {
+            color: #ffffff;
+        }
+
+        .tm-block-title {
+            color: #ffffff;
+        }
+
+        .table {
+            color: #ffffff;
+        }
+
+        .table th,
+        .table td {
+            border-color: #ffffff;
+        }
+
+        .tm-status-circle {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        .tm-status-circle.pending {
+            background-color: #ffc107;
+        }
+
+        .tm-status-circle.processing {
+            background-color: #17a2b8;
+        }
+
+        .tm-status-circle.completed {
+            background-color: #28a745;
+        }
+
+        .tm-status-circle.cancelled {
+            background-color: #dc3545;
+        }
+    </style>
 </head>
 
 <body id="reportsPage">
@@ -23,8 +109,9 @@
                 <a class="navbar-brand" href="index.html">
                     <h1 class="tm-site-title mb-0">Product Admin</h1>
                 </a>
-                <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
                     <i class="fas fa-bars tm-nav-icon"></i>
                 </button>
 
@@ -33,21 +120,21 @@
                         <li class="nav-item">
                             <a class="nav-link active " href="index.html">
                                 <i class="far fa-file-alt"></i>
-                                Reports 
+                                Reports
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="products.html">
                                 <i class="fas fa-shopping-cart"></i>
-                                Products
+                                Productos
                             </a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link" href="accounts.html">
                                 <i class="far fa-user"></i>
-                                Accounts
+                                Cuentas
                             </a>
                         </li>
                         <li class="nav-item">
@@ -60,7 +147,7 @@
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link d-block" href="login.html">
-                                Admin, <b>Logout</b>
+                                Admin, <b>Cerrar Sesión</b>
                             </a>
                         </li>
                     </ul>
@@ -71,24 +158,24 @@
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <p class="text-white mt-5 mb-5">Welcome back, <b>Admin</b></p>
+                    <p class="text-white mt-5 mb-5">Bienvenido de nuevo, <b>Admin</b></p>
                 </div>
             </div>
             <!-- row -->
             <div class="row tm-content-row">
-                
+
                 <div class="col-12 tm-block-col">
                     <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
-                        <h2 class="tm-block-title">Today's report</h2>
+                        <h2 class="tm-block-title">El informe de hoy</h2>
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">ORDER NO.</th>
-                                    <th scope="col">STATUS</th>
-                                    <th scope="col">CLIENT</th>
-                                    <th scope="col">LOCATION</th>
-                                    <th scope="col">ORDER DATE</th>
-                                    <th scope="col">EST DELIVERY DUE</th>
+                                    <th scope="col">N º DE PEDIDO</th>
+                                    <th scope="col">ESTADO</th>
+                                    <th scope="col">CLIENTE</th>
+                                    <th scope="col">UBICACIÓN</th>
+                                    <th scope="col">FECHA DE ORDEN</th>
+                                    <th scope="col">ENTREGA</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -96,15 +183,16 @@
                                 <tr>
                                     <th scope="row"><b>#<%= order.id %></b></th>
                                     <td>
-                                        <div class="tm-status-circle <%= order.status.toLowerCase() %>">
+                                        <div class="tm-status-circle <% if (order.status) { %> <%= order.status.toLowerCase() %> <% } %>">
+
                                         </div><%= order.status %>
                                     </td>
                                     <td><b><%= order.client %></b></td>
                                     <td><b><%= order.location %></b></td>
-                                    <td><%= order.order_date.toLocaleDateString() %></td>
-                                    <td><%= order.est_delivery_date.toLocaleDateString() %></td>
-                                </tr>   
-                                <% }); %>                             
+                                    <td><% if (order.order_date) { %> <%= order.order_date.toLocaleDateString() %> <% } %></td>
+                                    <td><% if (order.est_delivery_date) { %> <%= order.est_delivery_date.toLocaleDateString() %> <% } %></td>
+                                </tr>
+                                <% }); %>
                             </tbody>
                         </table>
                     </div>
@@ -114,16 +202,14 @@
         <footer class="tm-footer row tm-mt-small">
             <div class="col-12 font-weight-light">
                 <p class="text-center text-white mb-0 px-4 small">
-                    Copyright &copy; <b>2024</b> All rights reserved. 
+                    Derechos de autor &copy; <b>2024</b> Todos los derechos reservados 
                 </p>
             </div>
         </footer>
     </div>
 
     <script src="static/product-admin/js/jquery-3.3.1.min.js"></script>
-    <!-- https://jquery.com/download/ -->
     <script src="static/product-admin/js/moment.min.js"></script>
-    <!-- http://www.chartjs.org/docs/latest/ -->
     <script src="static/product-admin/js/bootstrap.min.js"></script>
 
 </body>

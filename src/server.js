@@ -13,6 +13,7 @@ const ordersRepository = require("./servidor/ordersRepository");
 const accountsRepository = require("./servidor/accountsRepository");
 const categoriesRepository = require("./servidor/categoriesRepository");
 
+const { Pool } = require('pg');
 
 
 var app = express();
@@ -67,6 +68,7 @@ app.get('/',function(req,res,next){//Creamos las rutas o secciones que va tener 
 app.get('/index.html',function(req,res,next){
     oOrdersRepository.getOrders()
     .then(data => {
+        console.log(data);
         res.render("product-admin/index", {orders : data});
     })
     .catch(error => {
@@ -97,27 +99,75 @@ app.get('/add-product.html',function(req,res,next){
     }); 
 });
 
-app.get('/edit-product.html',function(req,res,next){
-    res.render("product-admin/edit-product");
+app.get('/edit-product.html',function(req,res,next){   
+    oCategoriesRepository.getCategories()
+    .then(data => {
+        res.render("product-admin/edit-product",{categories : data, product: req.query});
+    })
+    .catch(error => {
+        console.error("Error al obtener categories:", error);
+        // Manejar errores
+    }); 
 });
+
+app.get('/shoping-cart.html', function(req, res, next) {
+    res.render('e-commerce/shoping-cart', {product : req.query}); 
+});
+
+
 
 app.get('/login.html',function(req,res,next){
     res.render("product-admin/login");
 });
 
 app.get('/products.html',function(req,res,next){
-    oProductsRepository.getProductos()
-    .then(data => {
+    // Verificar si el parámetro "borrarProducto" existe en la consulta
+    if (req.query.borrarProducto) {
+        oProductsRepository.borrarProducto(req.query.borrarProducto)
+        .then(() => {
+            // Después de borrar el producto, obtener los productos actualizados
+            return oProductsRepository.getProductos();
+        })
+        .then(data => {
+            res.render ("product-admin/products", {products: data});
+        })
+        .catch(error => {
+            console.error("Error al borrar u obtener productos: ", error);
+        });
+    } else if (req.query.productIds) {// Verifica si fué seleccionado uno o varios productos a ser eliminados
+
+        var arrayIdProductos = Array.isArray(req.query.productIds) ? req.query.productIds : [req.query.productIds];
+
+        oProductsRepository.borrarListaProducto(arrayIdProductos)
+        .then(() => {
+            // Después de borrar los producto, obtener los productos actualizados
+            return oProductsRepository.getProductos();
+        })
+        .then(data => {
+            res.render ("product-admin/products", {products: data});
+        })
+        .catch(error => {
+            console.error("Error al borrar productos seleccionados u obtener productos: ", error);
+        });
+    } 
+    else { // si no se proporciona el parámetro para borrar el producto, simplemente obtiene los productos
+        oProductsRepository.getProductos()
+        .then(data => {
         res.render("product-admin/products", {products: data});
     })
-    .catch(error => {
+        .catch(error => {
         console.error("Error al obtener productos:", error);
         // Manejar errores
-    });    
+    }); 
+
+    }
+ 
 });
 
+
 app.post('/products.html',upload.single('fileInput'),function(req,res,next){
-    oProductsRepository.addProducto(req.body,req.file.originalname)
+    const imageName = req.file? req.file.originalname : req.body.imageName;
+    oProductsRepository.addOrUpdateProducto(req.body,imageName)
     .then(dataInsert => {
         //Solicita todos los productos
         oProductsRepository.getProductos()
@@ -130,10 +180,10 @@ app.post('/products.html',upload.single('fileInput'),function(req,res,next){
             });  
             })
     .catch(error => {
-        console.error("Error al agregar producto:", error);
+        console.error("Error al agregar o actualizar producto:", error);
         // Manejar errores
     });   
-    if (!req.file) {    
+    if (!req.file && !req.body.imageName) {    
     console.log("Error obteniendo el archivo de imagen");
     }      
 });
@@ -162,6 +212,60 @@ app.get('/home.html', function(req, res, next) {
         console.error("Error al obtener productos para home e-commerce:", error);
         // Manejar errores
     });    
+});
+
+app.post('/login.html', function(req, res, next) {
+    const { email, password } = req.body;
+    console.log("Correo recibido:", email);
+    console.log("Contraseña recibida:", password);
+    // Realiza una consulta en la base de datos para verificar las credenciales del usuario
+    oAccountsRepository.getAccountByEmail(email)
+        .then(account => {
+            if (account && account.password === password) {
+                console.error("Validación de credenciales exitosa");
+                // Las credenciales son válidas, redirige al usuario al sitio de administración de productos 
+                res.redirect('/index.html');
+            } else {
+                console.error("Password incorrecto");
+                // Las credenciales son inválidas, renderiza la página de inicio de sesión con un mensaje de error
+                res.render('product-admin/login', { error: 'Credenciales inválidas' });
+            }
+        })
+        .catch(error => {
+            console.error("Error al verificar las credenciales:", error);
+            // Manejar errores
+            res.render('product-admin/login', { error: 'Error al verificar las credenciales' });
+        });
+});
+
+app.post('/guardar-orden', async (req, res) => {
+    try {
+        const pool = new Pool(config);        
+        const { name, province, city, postcode} = req.body;
+        /*
+        // Crear un objeto con los datos de la orden
+        const order = {
+            status,
+            client,
+            location,
+            order_date,
+            est_delivery_date
+        };
+
+        // Guardar la orden utilizando el método saveOrder del repositorio de órdenes
+        const savedOrder = await oOrdersRepository.saveOrder(order);
+        */
+        // Inserta la nueva orden en la base de datos
+        const result = await pool.query(
+            'INSERT INTO OrderClient (status, client, location, order_date, est_delivery_date) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+            ['Completed', name, province+" / "+city+" / "+ postcode, new Date(), new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toLocaleDateString()]
+        );
+        console.log ('Insertado correctamente');
+        res.status(201).send('Orden guardada correctamente.');
+    } catch (error) {
+        console.error('Error al guardar la orden:', error);
+        res.status(500).send('Error interno del servidor.');
+    }
 });
 
 app.listen(app.get('port'),()=>{ //listener en el puesto especificado

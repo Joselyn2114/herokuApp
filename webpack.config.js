@@ -28,14 +28,6 @@ module.exports={ //módulo de webpack -- permite crear un objeto que puede ser r
         new htmlWebpackPlugin({
             filename: 'contact.html',
             template: './src/cliente/e-commerse/contact.html'
-        }),
-        new htmlWebpackPlugin({
-            filename: 'product-detail.html',
-            template: './src/cliente/e-commerse/product-detail.html'
-        }),
-        new htmlWebpackPlugin({
-            filename: 'shoping-cart.html',
-            template: './src/cliente/e-commerse/shoping-cart.html'
         })
     ]
 }

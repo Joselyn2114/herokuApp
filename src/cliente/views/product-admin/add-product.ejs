@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Add Product - Dashboard HTML Template</title>
+    <title>ALDEA MODA / e-commerse Ropa Mujer - Hombre -  Niño - Niña</title>
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css?family=Roboto:400,700"
@@ -131,30 +131,37 @@
                             class="form-control validate"
                             required
                           />
+                          <input
+                            id="productId"
+                            name="productId"
+                            value ="0"
+                            type="text"
+                            style="display: none;"
+                          />
                         </div>
                   </div>                                  
               </div>
-                  <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
-                    <div class="tm-product-img-dummy mx-auto">
-                      <i
-                        class="fas fa-cloud-upload-alt tm-upload-icon"
-                        onclick="document.getElementById('fileInput').click();"
-                      ></i>
-                    </div>
-                    <div class="custom-file mt-3 mb-3">
-                      <input id="fileInput" name="fileInput" type="file"  style="display:none;" onchange="displayFileName()" />
-                      <span id="fileNameDisplay"></span>
-                      <input
-                        type="button"
-                        class="btn btn-primary btn-block mx-auto"
-                        value="UPLOAD PRODUCT IMAGE"
-                        onclick="document.getElementById('fileInput').click();"
-                      />
-                    </div>
-                  </div>
-                  <div class="col-12">
-                    <button type="submit" class="btn btn-primary btn-block text-uppercase">Add Product Now</button>
-                  </div>      
+              <div class="col-xl-6 col-lg-6 col-md-12 mx-auto mb-4">
+                <div class="tm-product-img-dummy mx-auto">
+                  <i
+                    class="fas fa-cloud-upload-alt tm-upload-icon"
+                    onclick="document.getElementById('fileInput').click();"
+                  ></i>
+                </div>
+                <div class="custom-file mt-3 mb-3">
+                  <input id="fileInput" name="fileInput" type="file"  style="display:none;" onchange="displayFileName()" />
+                  <span id="fileNameDisplay"></span>
+                  <input
+                    type="button"
+                    class="btn btn-primary btn-block mx-auto"
+                    value="UPLOAD PRODUCT IMAGE"
+                    onclick="document.getElementById('fileInput').click();"
+                  />
+                </div>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-primary btn-block text-uppercase">Add Product Now</button>
+              </div>      
                 </form>          
             </div>
           </div>
@@ -176,10 +183,7 @@
     <script src="static/product-admin/js/bootstrap.min.js"></script>
     <!-- https://getbootstrap.com/ -->
     <script>
-      $(function() {
-        $("#expire_date").datepicker();
-      });
-
+     
       function displayFileName() {
         var input = document.getElementById('fileInput');
         var fileNameDisplay = document.getElementById('fileNameDisplay');
@@ -190,6 +194,7 @@
         } else {
           fileNameDisplay.textContent = '';
         }
+     
       }
     </script>
   </body>
