@@ -188,6 +188,41 @@ app.post('/products.html',upload.single('fileInput'),function(req,res,next){
     }      
 });
 
+app.post('/loadAccount',function(req,res,next){
+    
+    oAccountsRepository.getAccountById(req.body.id)
+    .then(data => {
+        res.json(data);
+    })
+    .catch(error => {
+        console.error("Error al cargar cuenta por id : ", error);
+        // Manejar errores
+    });    
+});
+
+app.post('/updateAccount',function(req,res,next){
+    oAccountsRepository.updateAccount(req.body)
+    .then(() => {
+        console.log('actualizó con éxito!')
+        res.redirect('/accounts.html');
+    })
+    .catch(error => {
+        console.error("Error al actualizar cuenta: ", error);
+        // Manejar errores
+    });    
+});
+
+app.post('/deleteAccount',function(req,res,next){
+    oAccountsRepository.deleteAccount(req.body.id)
+    .then(() => {
+        console.log('eliminó la cuenta con éxito!')
+        res.redirect('/accounts.html');
+    })
+    .catch(error => {
+        console.error("Error al eliminar la cuenta: ", error);
+        // Manejar errores
+    });    
+});
 
 //RUTAS SITIO E-COMMERSE ALDEA MODA
 app.get('/product.html', function(req, res, next) {

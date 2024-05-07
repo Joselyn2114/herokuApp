@@ -32,6 +32,90 @@ class AccountsRepository{
             });
         }
 
+         /*
+        Obtener información de una cuenta por id
+        */
+
+        getAccountById(id) {
+            return new Promise((resolve, reject) => {
+                // Conección a base de datos postgresql
+                const client = new Client(this.oConfig);
+                client.connect(error => {
+                    if (error) {
+                        console.log("Error al establecer la conexión a la BD -- " + error);
+                        reject(error);
+                    } else {
+                        console.log("Conexión exitosa");
+                        client.query(`SELECT * FROM account WHERE id = ${id} LIMIT 1`, (error, res) => {
+                            if (error) {
+                                console.log("Error en select DB --" + error);
+                                reject(error);
+                            } else {
+                                client.end();
+                                resolve(res.rows);
+                            }
+                        });
+                    }
+                });
+            });
+        }
+
+         /*
+        Actualiza una cuenta mediante su id
+        */
+
+        updateAccount(account) {
+            return new Promise((resolve, reject) => {
+                // Conección a base de datos postgresql
+                const client = new Client(this.oConfig);
+                client.connect(error => {
+                    if (error) {
+                        console.log("Error al establecer la conexión a la BD -- " + error);
+                        reject(error);
+                    } else {
+                        console.log("Conexión exitosa");
+                        client.query(`UPDATE account SET nombre = '${account.name}', email = '${account.email}', password = '${account.password}', phone = '${account.phone}' WHERE id = ${account.id}`, (error, res) => {
+                            if (error) {
+                                console.log("Error en el update de account en DB --" + error);
+                                reject(error);
+                            } else {
+                                client.end();
+                                resolve();
+                            }
+                        });
+                    }
+                });
+            });
+        }
+
+         /*
+        Elimina una cuenta mediante su id
+        */
+
+        deleteAccount(id) {
+            return new Promise((resolve, reject) => {
+                // Conección a base de datos postgresql
+                const client = new Client(this.oConfig);
+                client.connect(error => {
+                    if (error) {
+                        console.log("Error al establecer la conexión a la BD -- " + error);
+                        reject(error);
+                    } else {
+                        console.log("Conexión exitosa");
+                        client.query(` DELETE FROM account WHERE id = ${id}`, (error, res) => {
+                            if (error) {
+                                console.log("Error en el delete de account en DB --" + error);
+                                reject(error);
+                            } else {
+                                client.end();
+                                resolve();
+                            }
+                        });
+                    }
+                });
+            });
+        }
+
         // Buscar el correo 
         getAccountByEmail(email) {
             return new Promise((resolve, reject) => {

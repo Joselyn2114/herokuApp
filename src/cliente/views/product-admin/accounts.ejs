@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALDEA MODA / e-commerse Ropa Mujer - Hombre -  Niño - Niña</title>
+    <title>ALDEA MODA / e-commerce Ropa Mujer - Hombre -  Niño - Niña</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
     <link rel="stylesheet" href="static/product-admin/css/fontawesome.min.css">
     <link rel="stylesheet" href="static/product-admin/css/bootstrap.min.css">
@@ -116,7 +116,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="home.html">
                             <i class="fas fa-dollar-sign"></i>
-                            E-Commerse
+                            E-Commerce
                         </a>
                     </li>
                 </ul>
@@ -137,7 +137,7 @@
                 <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
                     <h2 class="tm-block-title">Lista de cuentas</h2>
                     <p class="text-white">Cuentas</p>
-                    <select class="custom-select">
+                    <select id="id" class="custom-select"  onchange="cargarDatos()">
                         <option value="0">Seleccionar cuenta</option>
                         <% accounts.forEach(function(account) { %>
                         <option value="<%= account.id %>"><%= account.nombre %></option>
@@ -151,7 +151,7 @@
             <div class="tm-block-col tm-col-account-settings">
                 <div class="tm-bg-primary-dark tm-block tm-block-settings">
                     <h2 class="tm-block-title">Configuraciones de la cuenta</h2>
-                    <form action="" class="tm-signup-form row">
+                    <form id="form" action="/updateAccount" method="post" class="tm-signup-form row">
                         <div class="form-group col-lg-6">
                             <label for="name">Nombre de la cuenta</label>
                             <input
@@ -172,12 +172,20 @@
                         </div>
                         <div class="form-group col-lg-6">
                             <label for="password">Contraseña</label>
+                            <div class="input-group">
                             <input
                                     id="password"
                                     name="password"
                                     type="password"
                                     class="form-control validate"
+                                    aria-describedby="showPassword"
                             />
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="button" id="showPassword">
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
                         </div>
                         <div class="form-group col-lg-6">
                             <label for="password2">Escriba la contraseña otra vez</label>
@@ -206,15 +214,24 @@
                             Actualiza tu perfil
                             </button>
                         </div>
+                        <input
+                                    id="accountId"
+                                    name="id"
+                                    type="text"
+                                    style="display: none;"
+                            />
+                        </form>
                         <div class="col-12">
                             <button
                                     type="submit"
                                     class="btn btn-primary btn-block text-uppercase"
+                                    id="eliminarCuenta"
+                                    onclick="borrarCuenta()"
                             >
                                 Eliminar tu cuenta
                             </button>
-                        </div>
-                    </form>
+                        </div>             
+                    
                 </div>
             </div>
         </div>
@@ -230,5 +247,71 @@
 
 <script src="static/product-admin/js/jquery-3.3.1.min.js"></script>
 <script src="static/product-admin/js/bootstrap.min.js"></script>
+<script>
+    function cargarDatos(){
+        const id = $('#id').val();
+        
+        $.ajax({
+            type: 'POST',
+            url: '/loadAccount',
+            data: {id : id},
+            success : function(res){
+                //Manejar respuesta del servidor
+                console.log('La petición fué exitosa', res);
+                $('#name').val(res[0].nombre);
+                $('#email').val(res[0].email);
+                $('#password').val(res[0].password);
+                $('#phone').val(res[0].phone);
+                $('#accountId').val(res[0].id);
+            },
+            error : function (error){
+                //Manejar errores
+                console.error('Error al cargar la cuenta');
+            }
+        });
+    }
+
+    function borrarCuenta(){
+        var id = $('#accountId').val();
+
+        $.ajax({
+            type: 'POST',
+            url: '/deleteAccount',
+            data: {id : id},
+            success : function(res){
+                //Manejar respuesta del servidor
+                alert('La cuenta se eliminó exitosamente!');
+            },
+            error : function (error){
+                //Manejar errores
+                console.error('Error al cargar la cuenta');
+            }
+        });
+    }
+
+    $('#showPassword').click(function() {
+        var tipo = $('#password').attr('type');
+        if (tipo === 'password') {
+            $('#password').attr('type', 'text');
+            $('#showPassword i').removeClass('fa-eye').addClass('fa-eye-slash');
+        } else {
+            $('#password').attr('type', 'password');
+            $('#showPassword i').removeClass('fa-eye-slash').addClass('fa-eye');
+        }
+    });
+
+    $('#form').submit(function(event) {
+            // Obtener los valores de los campos de contraseña
+            var password = $('#password').val();
+            var password2 = $('#password2').val();
+
+            // Verificar si las contraseñas son iguales
+            if (password !== password2 && password2 !== "") {
+                // Las contraseñas no son iguales, evitar enviar el formulario
+                alert("Las contraseñas no coinciden");
+                event.preventDefault(); // Evitar el envío del formulario
+            }
+        });
+</script>
 </body>
 </html>
