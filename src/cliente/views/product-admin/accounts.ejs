@@ -219,6 +219,7 @@
                                     name="id"
                                     type="text"
                                     style="display: none;"
+                                    value="-1"
                             />
                         </form>
                         <div class="col-12">
@@ -250,6 +251,8 @@
 <script>
     function cargarDatos(){
         const id = $('#id').val();
+
+        $("#btnActualizar").text("Actualiza tu perfil");
         
         $.ajax({
             type: 'POST',

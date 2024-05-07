@@ -73,16 +73,30 @@ class AccountsRepository{
                         console.log("Error al establecer la conexión a la BD -- " + error);
                         reject(error);
                     } else {
-                        console.log("Conexión exitosa");
-                        client.query(`UPDATE account SET nombre = '${account.name}', email = '${account.email}', password = '${account.password}', phone = '${account.phone}' WHERE id = ${account.id}`, (error, res) => {
-                            if (error) {
-                                console.log("Error en el update de account en DB --" + error);
-                                reject(error);
-                            } else {
-                                client.end();
-                                resolve();
-                            }
-                        });
+                        if(account.id != -1){
+                            console.log('entró para actualizar cuenta: '+ account.id);
+                            client.query(`UPDATE account SET nombre = '${account.name}', email = '${account.email}', password = '${account.password}', phone = '${account.phone}' WHERE id = ${account.id}`, (error, res) => {
+                                if (error) {
+                                    console.log("Error en el update de account en DB --" + error);
+                                    reject(error);
+                                } else {
+                                    client.end();
+                                    resolve();
+                                }
+                            });
+                        }else{
+                            client.query(`INSERT INTO account (nombre, email, password, phone) VALUES ($1, $2, $3, $4)`, 
+                                [account.name, account.email, account.password, account.phone], 
+                                (error, res) => {
+                                    if (error) {
+                                        console.log("Error en el insert de account en DB --" + error);
+                                        reject(error);
+                                    } else {
+                                        client.end();
+                                        resolve();
+                                    }
+                                });                               
+                        }
                     }
                 });
             });
