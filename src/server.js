@@ -41,10 +41,10 @@ const upload = multer({ storage: storage });
 
 var config = {
     user: 'ua261ode3rta9v',
-    host: 'ce1r1ldap2qd4b.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com', 
-    database: 'd2m9in89i2llrk', 
+    host: 'cb5ajfjosdpmil.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com', 
+    database: 'dbilccvauucbvg', 
     ssl: { rejectUnauthorized: false},  
-    password: 'p8afbf3922c7fa691d3c68ece4f172dc6ef26c3315e6afa350f24356d9d4632e8',
+    password: 'pf7ded34ee4f5b87cb0f6269e2525158e29c916ca8fc24e9c9fff28835d8f2525',
     port: '5432'    
   };
 
@@ -165,28 +165,33 @@ app.get('/products.html',function(req,res,next){
 });
 
 
-app.post('/products.html',upload.single('fileInput'),function(req,res,next){
-    const imageName = req.file? req.file.originalname : req.body.imageName;
-    oProductsRepository.addOrUpdateProducto(req.body,imageName)
-    .then(dataInsert => {
-        //Solicita todos los productos
-        oProductsRepository.getProductos()
-            .then(data => {
-                res.render("product-admin/products", {products: data});
-            })
-            .catch(error => {
-                console.error("Error al obtener productos:", error);
-                // Manejar errores
-            });  
-            })
-    .catch(error => {
-        console.error("Error al agregar o actualizar producto:", error);
-        // Manejar errores
-    });   
-    if (!req.file && !req.body.imageName) {    
-    console.log("Error obteniendo el archivo de imagen");
-    }      
+app.post('/products.html', upload.single('fileInput'), function(req, res, next) {
+    const imageName = req.file ? req.file.originalname : req.body.imageName;
+    const imageText = req.body.imageText; // Obtener el texto de la imagen
+
+    oProductsRepository.addOrUpdateProducto(req.body, imageName, imageText) // Pasar el texto de la imagen a la función addOrUpdateProducto
+        .then(dataInsert => {
+            // Solicita todos los productos
+            oProductsRepository.getProductos()
+                .then(data => {
+                    res.render("product-admin/products", {
+                        products: data
+                    });
+                })
+                .catch(error => {
+                    console.error("Error al obtener productos:", error);
+                    // Manejar errores
+                });
+        })
+        .catch(error => {
+            console.error("Error al agregar o actualizar producto:", error);
+            // Manejar errores
+        });
+    if (!req.file && !req.body.imageName) {
+        console.log("Error obteniendo el archivo de imagen");
+    }
 });
+
 
 app.post('/loadAccount',function(req,res,next){
     
