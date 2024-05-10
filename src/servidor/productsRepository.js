@@ -32,7 +32,7 @@ class ProductsRepository{
 
         /* Agrega o actualiza un nuevo producto a la base de datos*/
 
-        addOrUpdateProducto(product, imageName){
+        addOrUpdateProducto(product, imageName, imageDescription){
             return new Promise((resolve, reject) => {
                 // Conexión a base de datos postgresql                
                 const client = new Client(this.oConfig);
@@ -43,7 +43,7 @@ class ProductsRepository{
                     } else {
                         console.log("Conexión exitosa");
                         if(product.productId == 0){ // si productId es 0 significa que es un nuevo producto
-                            client.query(`Insert into Product(name,in_stock,price,category_name,image_name) values('${product.name}',${product.in_stock},${product.price},'${product.category}','${imageName}')`, (error, res) => {
+                            client.query(`Insert into Product(name,in_stock,price,category_name,image_name, image_description) values('${product.name}',${product.in_stock},${product.price},'${product.category}','${imageName}', '${imageDescription}')`, (error, res) => {
                                 if (error) {
                                     console.log("Error en Insert Producto DB -- " + error);
                                     reject(error);
@@ -54,7 +54,7 @@ class ProductsRepository{
                                 }
                             });
                         }else{// si productId es diferente de 0 significa que es un producto a actualizar
-                            client.query(`Update Product Set name = '${product.name}', in_stock = ${product.in_stock}, price = ${product.price}, category_name = '${product.category}', image_name = '${imageName}'  Where id = ${product.productId}`, (error, res) => {
+                            client.query(`Update Product Set name = '${product.name}', in_stock = ${product.in_stock}, price = ${product.price}, category_name = '${product.category}', image_name = '${imageName}', image_description = '${imageDescription}'  Where id = ${product.productId}`, (error, res) => {
                                 if (error) {
                                     console.log("Error en Update de Producto DB -- " + error);
                                     reject(error);
@@ -69,6 +69,7 @@ class ProductsRepository{
                 });
             });
         }
+        
         
         /* Función para borrar un producto por su ID*/
 
