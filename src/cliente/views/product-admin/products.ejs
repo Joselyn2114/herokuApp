@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,64 +11,87 @@
     <link rel="stylesheet" href="static/product-admin/css/templatemo-style.css">
     <style>
         body {
-            background-color: #000;
-            color: #fff;
+            background-color: #ffffff;
+            color: #6c757d;
             font-family: 'Roboto', sans-serif;
         }
+
         .navbar {
-            background-color: #111 !important;
+            background-color: #829eb4 !important;
         }
+
         .navbar-brand {
-            color: #f90 !important;
+            color: #ffffff !important;
         }
+
         .navbar-toggler {
-            border-color: #fff !important;
+            border-color: #ffffff !important;
         }
+
         .navbar-nav .nav-link {
-            color: #fff !important;
+            color: #ffffff !important;
         }
+
         .navbar-nav .nav-link:hover {
-            color: #f90 !important;
+            color: #ffffff !important;
         }
+
         .navbar-nav .nav-item.active .nav-link {
-            color: #f90 !important;
+            color: #ffffff !important;
         }
+
         .tm-footer {
-            background-color: #111;
-            color: #fff;
+            background-color: #829eb4; /* Color azul claro */
+            color: #ffffff; /* Letras blancas */
         }
+
         .tm-footer a {
-            color: #f90;
+            color: #ffffff;
         }
+
         .tm-footer a:hover {
-            color: #fff;
+            color: #ffffff;
         }
+
         .tm-product-table th,
         .tm-product-table td {
-            color: #fff !important;
+            color: #ffffff !important;
         }
+
         .tm-bg-primary-dark {
-            background-color: #111 !important;
-            border-color: #333 !important;
+            background-color: #829eb4 !important; /* Color azul claro */
+            border-color: #ffffff !important;
         }
+
         .btn-primary {
-            background-color: #f90 !important;
-            border-color: #f90 !important;
+            background-color: #486177  !important; /* Color azul claro */
+            border-color: #ffffff !important;
         }
+
         .btn-primary:hover {
-            background-color: #ffcc00 !important;
-            border-color: #ffcc00 !important;
+            background-color: #4f658a !important;
+            border-color: #4f658a !important;
         }
+
         .tm-site-title {
-            color: #fff;
+            color: #ffffff;
+        }
+
+        /* Cambio de color de fondo para la sección de administración de productos */
+        .tm-block-products {
+            background-color: #829eb4; /* Color gris */
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
         }
     </style>
 </head>
+
 <body id="reportsPage">
     <nav class="navbar navbar-expand-xl">
         <div class="container h-100">
             <a class="navbar-brand" href="index.html">
-                <h1 class="tm-site-title mb-0">Product Admin</h1>
+                <h1 class="tm-site-title mb-0">ADMINISTRACIÓN DE PRODUCTOS</h1>
             </a>
             <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -79,7 +103,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="index.html">
                             <i class="far fa-file-alt"></i>
-                            Informes 
+                            Informes
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
@@ -116,6 +140,7 @@
     <div class="container mt-5">
         <div class="row tm-content-row">
             <div class="col-sm-12 col-md-12 col-lg-8  col-xl-12 tm-block-col">
+                <!-- Aquí está el cambio de color de fondo -->
                 <div class="tm-bg-primary-dark tm-block tm-block-products">
                     <form action="/products.html" method="get">
                         <div class="tm-product-table-container">
@@ -128,22 +153,22 @@
                                         <th scope="col">PRECIO</th>
                                         <th scope="col">&nbsp;</th>
                                     </tr>
-                                </thead>                
+                                </thead>
                                 <tbody>
                                     <% products.forEach(function(product) { %>
                                         <tr>
-                                            <th scope="row"><input type="checkbox" value="<%= product.id %>" name="productIds"/></th>
+                                            <th scope="row"><input type="checkbox" value="<%= product.id %>" name="productIds" /></th>
                                             <td class="tm-product-name"><a href="/edit-product.html?editProductId=<%= product.id %>&name=<%=product.name%>&price=<%=product.price%>&inStock=<%=product.in_stock%>&categoryName=<%=product.category_name%>&imageName=<%=product.image_name%>" style="color: inherit"><%= product.name %></a></td>
                                             <td><%= product.in_stock %></td>
                                             <td><%= product.price %></td>
                                             <td>
-                                                <a href="/products.html?borrarProducto=<%= product.id %>"  class="tm-product-delete-link">
+                                                <a href="/products.html?borrarProducto=<%= product.id %>" class="tm-product-delete-link">
                                                     <i class="far fa-trash-alt tm-product-delete-icon"></i>
                                                 </a>
                                             </td>
                                         </tr>
                                     <% }); %>
-                                </tbody>              
+                                </tbody>
                             </table>
                         </div>
                         <!-- table container -->
@@ -157,11 +182,12 @@
     <footer class="tm-footer row tm-mt-small">
         <div class="col-12 font-weight-light">
             <p class="text-center text-white mb-0 px-4 small">
-              Derechos de autor &copy; <b>2024</b> Todos los derechos reservados 
+                Derechos de autor &copy; <b>2024</b> Todos los derechos reservados
             </p>
         </div>
     </footer>
     <script src="static/product-admin/js/jquery-3.3.1.min.js"></script>
     <script src="static/product-admin/js/bootstrap.min.js"></script>
 </body>
+
 </html>

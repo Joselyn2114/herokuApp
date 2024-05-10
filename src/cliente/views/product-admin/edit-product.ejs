@@ -96,7 +96,6 @@
                       name="category"
                       required
                     >
-                      <option value="" >Seleccionar Categoría</option>
                       <% categories.forEach(function(category) { %>
                         <option value="<%= category.name %>" <% if (category.name === product.categoryName) { %> selected <% } %>><%= category.name %></option>
                       <% }); %>
@@ -120,7 +119,7 @@
                         <div class="form-group mb-3 col-xs-12 col-sm-6">
                           <label
                             for="stock"
-                            >unidades en existencia
+                            >Existencias
                           </label>
                           <input
                             id="in_stock"
@@ -161,13 +160,13 @@
                   <input
                     type="button"
                     class="btn btn-primary btn-block mx-auto"
-                    value="CHANGE IMAGE NOW"
+                    value="Cambiar imagen"
                     onclick="document.getElementById('fileInput').click();"
                   />
                 </div>
               </div>
               <div class="col-12">
-                <button type="submit" class="btn btn-primary btn-block text-uppercase">Update Now</button>
+                <button type="submit" class="btn btn-primary btn-block">Actualizar</button>
               </div>      
                 </form>          
             </div>

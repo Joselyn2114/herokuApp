@@ -374,7 +374,7 @@ thead {
   color: #a0c0de;
 }
 .tm-bg-primary-dark {
-  background-color: #435c70;
+  background-color: #829eb4;
 }
 .tm-bg-gray {
   background-color: rgba(0, 0, 0, 0.05);
@@ -466,7 +466,7 @@ input[type="checkbox"]:focus {
 .custom-select {
   width: 100%;
   border: none;
-  color: #acc6de;
+  color: #ffffff;
   height: 50px;
   -webkit-appearance: none;
   -moz-appearance: none;

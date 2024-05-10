@@ -12,13 +12,13 @@
     <link rel="stylesheet" href="static/product-admin/css/templatemo-style.css">
     <style>
         body {
-            background-color: #343a40;
-            color: #ffffff;
+            background-color: #ffffff;
+            color: #343a40;
             font-family: 'Roboto', sans-serif;
         }
 
         .navbar {
-            background-color: #212529 !important;
+            background-color: #829eb4 !important;
         }
 
         .navbar-brand {
@@ -42,7 +42,7 @@
         }
 
         .tm-footer {
-            background-color: #212529;
+            background-color: #829eb4;
             color: #ffffff;
         }
 
@@ -55,8 +55,8 @@
         }
 
         .tm-bg-primary-dark {
-            background-color: #212529 !important;
-            border-color: #212529 !important;
+            background-color: #829eb4 !important; /* Color azul claro */
+            border-color: #6c82ac !important;
         }
 
         .tm-site-title {
@@ -85,19 +85,36 @@
         }
 
         .tm-status-circle.pending {
-            background-color: #ffc107;
+            background-color: #6f42c1; /* Morado */
         }
 
         .tm-status-circle.processing {
-            background-color: #17a2b8;
+            background-color: #007bff; /* Azul */
         }
 
         .tm-status-circle.completed {
-            background-color: #28a745;
+            background-color: #28a745; /* Verde */
         }
 
         .tm-status-circle.cancelled {
-            background-color: #dc3545;
+            background-color: #dc3545; /* Rojo */
+        }
+
+        /* Estilos para el área visual con color morado */
+        .creative-section {
+            background-color: #829eb4;
+            color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .creative-section h3 {
+            margin-bottom: 10px;
+        }
+
+        .creative-section p {
+            margin-bottom: 0;
         }
     </style>
 </head>
@@ -109,9 +126,8 @@
                 <a class="navbar-brand" href="index.html">
                     <h1 class="tm-site-title mb-0">Administración de productos</h1>
                 </a>
-                <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse"
-                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
+                <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fas fa-bars tm-nav-icon"></i>
                 </button>
 
@@ -165,6 +181,10 @@
             <div class="row tm-content-row">
 
                 <div class="col-12 tm-block-col">
+                    <div class="creative-section">
+                        <h3>¡Explora nuestras últimas colecciones!</h3>
+                        <p>Descubre lo último en moda para hombre, mujer, niño y niña en nuestra tienda online.</p>
+                    </div>
                     <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
                         <h2 class="tm-block-title">El informe de hoy</h2>
                         <table class="table">

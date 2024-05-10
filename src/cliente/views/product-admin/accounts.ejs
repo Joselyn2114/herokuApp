@@ -10,72 +10,72 @@
     <link rel="stylesheet" href="static/product-admin/css/templatemo-style.css">
     <style>
         body {
-            background-color: #000;
-            color: #fff;
+            background-color: #fff; /* Fondo blanco */
+            color: #000; /* Texto negro */
             font-family: 'Roboto', sans-serif;
         }
         .navbar {
-            background-color: #111 !important;
+            background-color: #829eb4  !important; /* Gris */
         }
         .navbar-brand {
-            color: #f90 !important;
+            color: #fff !important; 
         }
         .navbar-toggler {
-            border-color: #fff !important;
+            border-color: #fff !important; /* Azul */
         }
         .navbar-nav .nav-link {
-            color: #fff !important;
+            color: #fff !important; /* Azul */
         }
         .navbar-nav .nav-link:hover {
-            color: #f90 !important;
+            color: #fff !important; /* Azul */
         }
         .navbar-nav .nav-item.active .nav-link {
-            color: #f90 !important;
+            color: #fff !important; /* Azul */
         }
         .tm-footer {
-            background-color: #111;
-            color: #fff;
+            background-color: #829eb4; /* Gris */
+            color: #fff; /* Blanco */
         }
         .tm-footer a {
-            color: #f90;
+            color: #6c82ac; /* Azul */
         }
         .tm-footer a:hover {
             color: #fff;
         }
         .tm-bg-primary-dark {
-            background-color: #111 !important;
+            background-color: #829eb4 !important;
             border-color: #333 !important;
         }
         .btn-primary {
-            background-color: #f90 !important;
-            border-color: #f90 !important;
+            background-color: #fff !important; /* Azul */
+            border-color: #6c82ac !important; /* Azul */
         }
         .btn-primary:hover {
-            background-color: #ffcc00 !important;
-            border-color: #ffcc00 !important;
+            background-color: #fff !important; /* Azul claro */
+            border-color: #fff !important; /* Azul claro */
         }
         .tm-site-title {
             color: #fff;
         }
         .tm-block-title {
-            color: #f90;
+            color: #fff !important; /* Azul */
         }
         .form-control {
-            background-color: #222;
-            color: #fff;
+            background-color: #50657b;
+            color: #fff; /* Azul */
             border-color: #444;
         }
         .form-control:focus {
-            border-color: #f90;
-            box-shadow: 0 0 0 0.2rem rgba(255, 153, 0, 0.25);
+            border-color: #fff; /* Azul */
+            box-shadow: 0 0 0 0.2rem rgba(108, 130, 172, 0.25); /* Azul claro */
         }
         .btn-primary.btn-block {
-            background-color: #f90 !important;
-            border-color: #f90 !important;
+            background-color: #50657b !important; /* Azul */
+            border-color: #fff !important; /* Azul */
         }
         .btn-primary.btn-block:hover {
-            background-color: #ffcc00 !important;
-            border-color: #ffcc00 !important;
+            background-color: #50657b !important; /* Azul claro */
+            border-color: #fff !important; /* Azul claro */
         }
     </style>
 </head>
@@ -84,7 +84,7 @@
     <nav class="navbar navbar-expand-xl">
         <div class="container h-100">
             <a class="navbar-brand" href="index.html">
-                <h1 class="tm-site-title mb-0">Product Admin</h1>
+                <h1 class="tm-site-title mb-0">ADMINISTRACIÓN DE PRODUCTOS</h1>
             </a>
             <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -153,7 +153,7 @@
                     <h2 class="tm-block-title">Configuraciones de la cuenta</h2>
                     <form id="form" action="/updateAccount" method="post" class="tm-signup-form row">
                         <div class="form-group col-lg-6">
-                            <label for="name">Nombre de la cuenta</label>
+                            <label for="name" style="color: #fff;">Nombre de la cuenta</label>
                             <input
                                     id="name"
                                     name="name"
@@ -162,7 +162,7 @@
                             />
                         </div>
                         <div class="form-group col-lg-6">
-                            <label for="email">Cuenta de email</label>
+                            <label for="email" style="color: #fff;">Cuenta de email</label>
                             <input
                                     id="email"
                                     name="email"
@@ -171,7 +171,7 @@
                             />
                         </div>
                         <div class="form-group col-lg-6">
-                            <label for="password">Contraseña</label>
+                            <label for="password" style="color: #fff;">Contraseña</label>
                             <div class="input-group">
                             <input
                                     id="password"
@@ -182,13 +182,13 @@
                             />
                             <div class="input-group-append">
                                 <button class="btn btn-outline-secondary" type="button" id="showPassword">
-                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                    <i class="fa fa-eye" aria-hidden="true" style="color: #fff;"></i>
                                 </button>
                             </div>
                         </div>
                         </div>
                         <div class="form-group col-lg-6">
-                            <label for="password2">Escriba la contraseña otra vez</label>
+                            <label for="password2" style="color: #fff;">Escriba la contraseña otra vez</label>
                             <input
                                     id="password2"
                                     name="password2"
@@ -197,7 +197,7 @@
                             />
                         </div>
                         <div class="form-group col-lg-6">
-                            <label for="phone">Teléfono</label>
+                            <label for="phone" style="color: #fff;">Teléfono</label>
                             <input
                                     id="phone"
                                     name="phone"
@@ -205,16 +205,9 @@
                                     class="form-control validate"
                             />
                         </div>
-                        <div class="form-group col-lg-6">
+                        <!-- <div class="form-group col-lg-6">
                             <label class="tm-hide-sm">&nbsp;</label>
-                            <button
-                                    type="submit"
-                                    class="btn btn-primary btn-block text-uppercase"
-                                    id="btnActualizar"
-                            >
-                            Agregar Nueva Cuenta
-                            </button>
-                        </div>
+                        </div> -->
                         <input
                                     id="accountId"
                                     name="id"
@@ -223,7 +216,14 @@
                                     value="-1"
                             />
                         </form>
-                        <div class="col-12">
+                        <div class="">
+                            <button
+                                    type="submit"
+                                    class="btn btn-primary btn-block text-uppercase"
+                                    id="btnActualizar"
+                            >
+                            Agregar Nueva Cuenta
+                            </button>
                             <button
                                     type="submit"
                                     class="btn btn-primary btn-block text-uppercase"

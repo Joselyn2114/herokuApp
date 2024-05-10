@@ -1,99 +1,213 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>ALDEA MODA / e-commerse Ropa Mujer - Hombre -  Niño - Niña</title>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css?family=Roboto:400,700"
-    />
-    <!-- https://fonts.google.com/specimen/Open+Sans -->
-    <link rel="stylesheet" href="static/product-admin/css/fontawesome.min.css" />
-    <!-- https://fontawesome.com/ -->
-    <link rel="stylesheet" href="static/product-admin/css/bootstrap.min.css" />
-    <!-- https://getbootstrap.com/ -->
-    <link rel="stylesheet" href="static/product-admin/css/templatemo-style.css">
-    <!--
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>ALDEA MODA / e-commerce Ropa Mujer - Hombre - Niño - Niña</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700" />
+  <!-- https://fonts.google.com/specimen/Open+Sans -->
+  <link rel="stylesheet" href="static/product-admin/css/fontawesome.min.css" />
+  <!-- https://fontawesome.com/ -->
+  <link rel="stylesheet" href="static/product-admin/css/bootstrap.min.css" />
+  <!-- https://getbootstrap.com/ -->
+  <link rel="stylesheet" href="static/product-admin/css/templatemo-style.css">
+  <!--
 	Product Admin CSS Template
 	https://templatemo.com/tm-524-product-admin
 	-->
-  </head>
+  <style>
+    /* Estilos para el modo de alto contraste */
+    body.contrast-mode {
+      background-color: #fff !important;
+      color: #000 !important;
+    }
 
-  <body>
-    <div>
-      <nav class="navbar navbar-expand-xl">
-        <div class="container h-100">
-          <a class="navbar-brand" href="#">
-            <h1 class="tm-site-title mb-0">Aldea Moda</h1>
-          </a>          
-        </div>
-      </nav>
-    </div>
+    .contrast-mode .tm-bg-primary-dark {
+      background-color: #8d6fb6 !important; /* Morado claro */
+      color: #fff !important;
+    }
 
-    <div class="container tm-mt-big tm-mb-big">
-      <div class="row">
-        <div class="col-12 mx-auto tm-login-col">
-          <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
-            <div class="row">
-              <div class="col-12 text-center">
-                <h2 class="tm-block-title mb-4">Bienvenido a ALDEA MODA</h2>
-              </div>
+    .contrast-mode .tm-block-title {
+      color: #8d6fb6 !important; /* Morado claro */
+    }
+
+    .contrast-mode .btn.btn-primary {
+      background-color: #8d6fb6 !important; /* Morado claro */
+      border-color: #8d6fb6 !important;
+      color: #fff !important;
+    }
+
+    .contrast-mode .btn.btn-primary:hover {
+      background-color: #7b5ea4 !important; /* Morado oscuro */
+      border-color: #7b5ea4 !important;
+      color: #fff !important;
+    }
+
+    .contrast-mode .text-white {
+      color: #fff !important;
+    }
+
+    /* Estilos para colores principales */
+    body {
+      background-color: #fff; /* Blanco */
+      color: #333; /* Negro */
+    }
+
+    .navbar {
+      background-color: #829eb4 !important; /* Gris */
+    }
+
+    .tm-footer {
+      background-color: #829eb4; /* Gris */
+      color: #ffffff; /* Blanco */
+    }
+
+    .tm-block-title {
+      color: #8d6fb6; /* Morado claro */
+      font-size: 24px;
+    }
+
+    .btn.btn-primary {
+      background-color: #fff; /* Blanco */
+      border-color: #8d6fb6; /* Morado claro */
+      color: #8d6fb6; /* Morado claro */
+    }
+
+    .btn.btn-primary:hover {
+      background-color: #f0f0f0; /* Blanco grisáceo */
+      border-color: #8d6fb6; /* Morado claro */
+      color: #8d6fb6; /* Morado claro */
+    }
+
+    .text-white {
+      color: #fff; /* Blanco */
+    }
+
+    /* Estilo para el formulario de inicio de sesión */
+    .tm-login-col {
+      background-color: #fff; /* Blanco */
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .tm-login-form label {
+      color: #8d6fb6; /* Morado claro */
+    }
+
+    .tm-login-form input {
+      border-color: #8d6fb6; /* Morado claro */
+    }
+
+    .tm-login-form input:focus {
+      box-shadow: 0 0 0 0.2rem rgba(141, 111, 182, 0.25); /* Sombra al enfocar */
+    }
+
+    .form-control {
+      background-color: #fff;
+      border: 1px solid #8d6fb6;
+      color: #000;
+    }
+
+    .form-control:focus {
+      background-color: #fff;
+      color: #000;
+    }
+
+    .btn-link {
+      color: #8d6fb6;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <nav class="navbar navbar-expand-xl">
+      <div class="container h-100">
+        <a class="navbar-brand" href="#">
+          <h1 class="tm-site-title mb-0">Aldea Moda</h1>
+        </a>
+      </div>
+    </nav>
+  </div>
+
+  <div class="container tm-mt-big tm-mb-big">
+    <div class="row">
+      <div class="col-12 mx-auto tm-login-col">
+        <div class="tm-block">
+          <div class="row">
+            <div class="col-12 text-center">
+              <h2 class="tm-block-title mb-4">Inicio de Sesión</h2>
+              <p style="color: #666;">Por favor, inicie sesión para acceder a su cuenta.</p>
             </div>
-            <div class="row mt-2">
-              <div class="col-12">
-                <form action="/login.html" method="post" class="tm-login-form">
-                  <div class="form-group">
-                    <label for="email">Correo electrónico</label>
-                    <input
-                      name="email"
-                      type="text"
-                      class="form-control validate"
-                      id="email"
-                      value=""
-                      required
-                    />
-                  </div>
-                  <div class="form-group mt-3">
-                    <label for="password">Contraseña</label>
-                    <input
-                      name="password"
-                      type="password"
-                      class="form-control validate"
-                      id="password"
-                      value=""
-                      required
-                    />
-                  </div>
-                  <div class="form-group mt-4">
-                    <button
-                      type="submit"
-                      class="btn btn-primary btn-block text-uppercase"
-                    >
-                      Ingresar
-                    </button>
-                  </div>
-                  <button class="mt-5 btn btn-primary btn-block text-uppercase">
-                    ¿No tiene cuenta? Registrarse
+          </div>
+          <div class="row mt-2">
+            <div class="col-12">
+              <form action="/login.html" method="post" class="tm-login-form">
+                <div class="form-group">
+                  <label for="email">Correo electrónico</label>
+                  <input
+                    name="email"
+                    type="text"
+                    class="form-control validate"
+                    id="email"
+                    value=""
+                    required
+                  />
+                </div>
+                <div class="form-group mt-3">
+                  <label for="password">Contraseña</label>
+                  <input
+                    name="password"
+                    type="password"
+                    class="form-control validate"
+                    id="password"
+                    value=""
+                    required
+                  />
+                </div>
+                <div class="form-group mt-4">
+                  <button
+                    type="submit"
+                    class="btn btn-primary btn-block text-uppercase"
+                    aria-label="Ingresar"
+                  >
+                    Ingresar
                   </button>
-                </form>
-              </div>
+                </div>
+              </form>
+              <a class="mt-3 btn btn-link btn-block text-uppercase" href="">
+                ¿Olvidó su contraseña?
+              </a>
             </div>
+            <a class="mt-3 btn btn-link btn-block text-uppercase" href="">
+              ¿No tiene cuenta? Registrarse
+            </a>
           </div>
         </div>
       </div>
     </div>
-    <footer class="tm-footer row tm-mt-small">
-      <div class="col-12 font-weight-light">
-        <p class="text-center text-white mb-0 px-4 small">
-          Derechos de autor &copy; <b>2024</b>  Reservados todos los derechos.
-        </p>
-      </div>
-    </footer>
-    <script src="static/product-admin/js/jquery-3.3.1.min.js"></script>
-    <!-- https://jquery.com/download/ -->
-    <script src="static/product-admin/js/bootstrap.min.js"></script>
-    <!-- https://getbootstrap.com/ -->
-  </body>
+  </div>
+  <footer class="tm-footer row tm-mt-small">
+    <div class="col-12 font-weight-light">
+      <p class="text-center text-white mb-0 px-4 small">
+        Derechos de autor &copy; <b>2024</b> Reservados todos los derechos.
+      </p>
+    </div>
+  </footer>
+  <script src="static/product-admin/js/jquery-3.3.1.min.js"></script>
+  <!-- https://jquery.com/download/ -->
+  <script src="static/product-admin/js/bootstrap.min.js"></script>
+  <!-- https://getbootstrap.com/ -->
+  <script>
+    // Función para alternar el modo de alto contraste
+    function toggleContrast() {
+      document.body.classList.toggle('contrast-mode');
+    }
+  </script>
+</body>
+
 </html>
