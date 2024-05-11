@@ -118,6 +118,7 @@
       color: #721c24;
       background-color: #f8d7da;
       border-color: #f5c6cb;
+      font-size: smaller;
     }
   </style>
 </head>
@@ -168,6 +169,12 @@
                     required
                   />
                 </div>
+                <!-- Notificación de contraseña incorrecta-->
+                <% if (typeof error !== 'undefined' && error !== null && error !== '') { %>
+                  <span class="mt-3 alert" role="alert">
+                      <%= error %>
+                  </span>
+                  <% } %>
                 <div class="form-group mt-4">
                   <button
                     type="submit"
@@ -176,13 +183,7 @@
                   >
                     Ingresar
                   </button>
-                </div>
-                <!-- Notificación de contraseña incorrecta-->
-                <% if (typeof error !== 'undefined' && error !== null && error !== '') { %>
-                  <div class="mt-3 alert" role="alert">
-                      <%= error %>
-                  </div>
-                  <% } %>
+                </div>                
               </form>
               <a class="mt-3 btn btn-link btn-block text-uppercase" href="/accounts.html">
                 ¿Olvidó su contraseña?
