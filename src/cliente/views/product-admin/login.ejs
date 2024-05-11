@@ -5,42 +5,34 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>ALDEA MODA / e-commerce Ropa Mujer - Hombre - Niño - Niña</title>
+  <title>Inicio de sesión</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700" />
-  <!-- https://fonts.google.com/specimen/Open+Sans -->
   <link rel="stylesheet" href="static/product-admin/css/fontawesome.min.css" />
-  <!-- https://fontawesome.com/ -->
   <link rel="stylesheet" href="static/product-admin/css/bootstrap.min.css" />
-  <!-- https://getbootstrap.com/ -->
   <link rel="stylesheet" href="static/product-admin/css/templatemo-style.css">
-  <!--
-	Product Admin CSS Template
-	https://templatemo.com/tm-524-product-admin
-	-->
   <style>
-    /* Estilos para el modo de alto contraste */
     body.contrast-mode {
       background-color: #fff !important;
       color: #000 !important;
     }
 
     .contrast-mode .tm-bg-primary-dark {
-      background-color: #8d6fb6 !important; /* Morado claro */
+      background-color: #8d6fb6 !important;
       color: #fff !important;
     }
 
     .contrast-mode .tm-block-title {
-      color: #8d6fb6 !important; /* Morado claro */
+      color: #8d6fb6 !important;
     }
 
     .contrast-mode .btn.btn-primary {
-      background-color: #8d6fb6 !important; /* Morado claro */
+      background-color: #8d6fb6 !important;
       border-color: #8d6fb6 !important;
       color: #fff !important;
     }
 
     .contrast-mode .btn.btn-primary:hover {
-      background-color: #7b5ea4 !important; /* Morado oscuro */
+      background-color: #7b5ea4 !important;
       border-color: #7b5ea4 !important;
       color: #fff !important;
     }
@@ -49,60 +41,58 @@
       color: #fff !important;
     }
 
-    /* Estilos para colores principales */
     body {
-      background-color: #fff; /* Blanco */
-      color: #333; /* Negro */
+      background-color: #fff;
+      color: #333;
     }
 
     .navbar {
-      background-color: #829eb4 !important; /* Gris */
+      background-color: #829eb4 !important;
     }
 
     .tm-footer {
-      background-color: #829eb4; /* Gris */
-      color: #ffffff; /* Blanco */
+      background-color: #829eb4;
+      color: #ffffff;
     }
 
     .tm-block-title {
-      color: #8d6fb6; /* Morado claro */
+      color: #8d6fb6;
       font-size: 24px;
     }
 
     .btn.btn-primary {
-      background-color: #fff; /* Blanco */
-      border-color: #8d6fb6; /* Morado claro */
-      color: #8d6fb6; /* Morado claro */
+      background-color: #fff;
+      border-color: #8d6fb6;
+      color: #8d6fb6;
     }
 
     .btn.btn-primary:hover {
-      background-color: #f0f0f0; /* Blanco grisáceo */
-      border-color: #8d6fb6; /* Morado claro */
-      color: #8d6fb6; /* Morado claro */
+      background-color: #f0f0f0;
+      border-color: #8d6fb6;
+      color: #8d6fb6;
     }
 
     .text-white {
-      color: #fff; /* Blanco */
+      color: #fff;
     }
 
-    /* Estilo para el formulario de inicio de sesión */
     .tm-login-col {
-      background-color: #fff; /* Blanco */
+      background-color: #fff;
       border-radius: 10px;
       padding: 30px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
     .tm-login-form label {
-      color: #8d6fb6; /* Morado claro */
+      color: #8d6fb6;
     }
 
     .tm-login-form input {
-      border-color: #8d6fb6; /* Morado claro */
+      border-color: #8d6fb6;
     }
 
     .tm-login-form input:focus {
-      box-shadow: 0 0 0 0.2rem rgba(141, 111, 182, 0.25); /* Sombra al enfocar */
+      box-shadow: 0 0 0 0.2rem rgba(141, 111, 182, 0.25);
     }
 
     .form-control {
@@ -119,6 +109,15 @@
     .btn-link {
       color: #8d6fb6;
       font-weight: bold;
+    }
+
+    /* Estilo para la notificación de error */
+    .alert {
+      margin-top: 10px;
+      padding: 10px;
+      color: #721c24;
+      background-color: #f8d7da;
+      border-color: #f5c6cb;
     }
   </style>
 </head>
@@ -178,12 +177,18 @@
                     Ingresar
                   </button>
                 </div>
+                <!-- Notificación de contraseña incorrecta-->
+                <% if (typeof error !== 'undefined' && error !== null && error !== '') { %>
+                  <div class="mt-3 alert" role="alert">
+                      <%= error %>
+                  </div>
+                  <% } %>
               </form>
-              <a class="mt-3 btn btn-link btn-block text-uppercase" href="">
+              <a class="mt-3 btn btn-link btn-block text-uppercase" href="/accounts.html">
                 ¿Olvidó su contraseña?
               </a>
             </div>
-            <a class="mt-3 btn btn-link btn-block text-uppercase" href="">
+            <a class="mt-3 btn btn-link btn-block text-uppercase" href="/accounts.html">
               ¿No tiene cuenta? Registrarse
             </a>
           </div>
@@ -199,9 +204,7 @@
     </div>
   </footer>
   <script src="static/product-admin/js/jquery-3.3.1.min.js"></script>
-  <!-- https://jquery.com/download/ -->
   <script src="static/product-admin/js/bootstrap.min.js"></script>
-  <!-- https://getbootstrap.com/ -->
   <script>
     // Función para alternar el modo de alto contraste
     function toggleContrast() {
