@@ -575,6 +575,11 @@ input[type="checkbox"]:focus {
   color: #aacbea;
 }
 
+#email[readonly] {
+  background-color: #f0f0f0; /* Color de fondo gris claro */
+  color: #333; /* Color de texto negro */
+}
+
 @media (min-width: 1200px) {
   .navbar-expand-xl .navbar-nav .nav-link {
     padding-left: 28px;
@@ -707,3 +712,4 @@ input[type="checkbox"]:focus {
     max-height: 350px;
   }
 }
+
