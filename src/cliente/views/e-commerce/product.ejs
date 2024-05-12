@@ -203,7 +203,7 @@
         <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item <%= product.category_name.toLowerCase() %>">
             <div class="block2">
                 <div class="block2-pic hov-img0">
-                    <img src="static/e-commerse/images/<%= product.image_name %>" alt="<%= product.name %>">
+                    <img src="static/e-commerse/images/<%= product.image_name %>" alt="<%= product.image_description %>">
     
                     <a href="shoping-cart.html?productId=<%=product.id%>&name=<%=product.name%>&price=<%=product.price%>&imageName=<%=product.image_name%>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
                         Comprar
@@ -332,13 +332,13 @@
 
                     <form>
                         <div class="wrap-input1 w-full p-b-4">
-                            <input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="email@example.com">
+                            <input class="input1 bg-none plh1 stext-107 cl7" type="text" name="email" placeholder="correo@correo.com">
                             <div class="focus-input1 trans-04"></div>
                         </div>
 
                         <div class="p-t-18">
                             <button class="flex-c-m stext-101 cl0 size-103 bg1 bor1 hov-btn2 p-lr-15 trans-04">
-                                Suscribir
+                                Suscribirse
                             </button>
                         </div>
                     </form>
