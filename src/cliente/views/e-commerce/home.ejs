@@ -206,7 +206,8 @@
 							<div class="block2-pic hov-img0">
 								<img src="static/e-commerse/images/<%= product.image_name %>" alt="<%= product.name %>">
 				
-								<a href="shoping-cart.html?productId=<%=product.id%>&name=<%=product.name%>&price=<%=product.price%>&imageName=<%=product.image_name%>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
+								<a aria-label="Presiona enter para comprar: <%= product.image_description %>"
+								href="shoping-cart.html?productId=<%=product.id%>&name=<%=product.name%>&price=<%=product.price%>&imageName=<%=product.image_name%>" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
 									Comprar
 								</a>
 							</div>
