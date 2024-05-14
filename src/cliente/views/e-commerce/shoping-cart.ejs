@@ -153,15 +153,15 @@
 	</header>
 	
 	<!-- breadcrumb -->
-	<nav aria-label="breadcrumb">
+	<nav>
 	<div class="container">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
-			<a href="home.html" class="stext-109 cl8 hov-cl1 trans-04">
+			<span class="stext-109 cl8 hov-cl1 trans-04">
 				Tienda
-				<i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
-			</a>
+				<i class="fa fa-angle-right m-l-9 m-r-10" ></i>
+			</span>
 
-			<span class="stext-109 cl4">
+			<span class="stext-109 cl4" tabindex="0">
 				Carro de compras
 			</span>
 		</div>
@@ -188,8 +188,8 @@
 												<img src="static/e-commerse/images/<%= product.imageName %>" alt="<%= product.name %>" id="productImage">
 											</div>
 										</td>
-										<td class="column-2" id="productName"><%= product.name %></td>
-										<td class="column-3" id="productPrice">₡ <%= product.price %></td>
+										<td tabindex="0" role="text" class="column-2" id="productName"><%= product.name %></td>
+										<td tabindex="0" role="text" aria-label="Precio: <%= product.price %>"  class="column-3" id="productPrice">₡<span><%= product.price %></span></td>
 									</tr>
 								</table>
 							</div>
@@ -211,7 +211,7 @@
 								</div>
 	
 								<div class="size-209">
-									<span class="mtext-110 cl2" id="subtotal">₡ <%= product.price %></span>
+									<span tabindex="0" aria-label="Subtotal: <%= product.price %>" class="mtext-110 cl2" id="subtotal">₡ <%= product.price %></span>
 								</div>
 							</div>
 	
@@ -223,7 +223,7 @@
 								</div>
 	
 								<div class="size-209">
-									<span class="mtext-110 cl2" id="taxes">₡ 0.00</span>
+									<span tabindex="0" aria-label="Impuestos: ₡0" class="mtext-110 cl2" id="taxes">₡ 0.00</span>
 								</div>
 							</div>
 	
@@ -236,11 +236,11 @@
 	
 								<div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
 									<div class="size-209">
-										<span class="mtext-110 cl2" id="shipping">₡ 0.00</span>
+										<span tabindex="0"  aria-label="Envío: ₡0" class="mtext-110 cl2" id="shipping">₡ 0.00</span>
 									</div>
 	
 									<div class="p-t-15">
-										<span class="stext-112 cl8">
+										<span tabindex="0"  aria-label="Ingrese los datos de dirección de envío en los siguientes campos:" class="stext-112 cl8">
 											Ubicación
 										</span>
 	
@@ -281,7 +281,7 @@
 							<div class="form-row">
 								<div class="form-group col-md-6">
 									<label for="cardNumber">Número de tarjeta:</label>
-									<input type="text" class="form-control" id="cardNumber" name="cardNumber" placeholder="1234 5678 9012 3456" required aria-label="Ingrese el número de tarjeta">
+									<input type="text" class="form-control" id="cardNumber" name="cardNumber" required aria-label="Ingrese el número de tarjeta">
 								</div>
 								<div class="form-group col-md-6">
 									<label for="cardHolderName">Nombre del cliente:</label>
@@ -302,13 +302,13 @@
 	
 							<div class="flex-w flex-t bor12 p-b-13 ">
 								<div class="size-208 ">
-									<span class="stext-110 cl2">
+									<span tabindex="0" class="stext-110 cl2">
 										Entrega estimada:
 									</span>
 								</div>
 	
 								<div class="size-209">
-									<span class="mtext-110 cl2" id="dateDelivery"><%= new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toLocaleDateString() %></span>
+									<span tabindex="0" class="mtext-110 cl2" id="dateDelivery"><%= new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toLocaleDateString() %></span>
 								</div>
 							</div>
 	
@@ -320,7 +320,7 @@
 								</div>
 	
 								<div class="size-209">
-									<span class="mtext-110 cl2" id="total">₡ <%= product.price %></span>
+									<span tabindex="0" aria-label="Total a pagar: ₡<%= product.price %>" class="mtext-110 cl2" id="total">₡ <%= product.price %></span>
 								</div>
 							</div>
 	

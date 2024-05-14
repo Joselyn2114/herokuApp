@@ -1,0 +1,57 @@
+<nav class="navbar navbar-expand-xl">
+    <div class="container h-100">
+            <h1 class="tm-site-title mb-0"
+            aria-label="Administración de productos - Barra de navegación."
+            tabindex="0">ADMINISTRACIÓN DE PRODUCTOS</h1>
+        <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fas fa-bars tm-nav-icon"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto h-100">
+                <li class="nav-item">
+                    <a class="nav-link <% if(paginaActual == 'index'){ %> active <% } %> " href="index.html"
+                        aria-label="Informes. Encuentra una lista de los últimos pedidos de productos realizados."
+                        tabindex="1">
+                        <i class="far fa-file-alt"></i>
+                        Informes
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <% if(paginaActual == 'products'){ %> active <% } %> " href="products.html"
+                        aria-label="Productos. Administra una lista de los productos que se encuentran actualmente en venta."
+                        tabindex="2">
+                        <i class="fas fa-shopping-cart"></i>
+                        Productos
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link <% if(paginaActual == 'accounts'){ %> active <% } %> " href="accounts.html"
+                        aria-label="Cuentas. Administra las cuentas que actualmente tienen acceso al sistema."
+                        tabindex="3">
+                        <i class="far fa-user"></i>
+                        Cuentas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="home.html"
+                    aria-label="Aldea Moda. Dirígete a nuestro sitio de clientes, con diferentes secciones, donde podrás encontrar una lista de productos con sus descripciones, de los cuales puedes proceder a comprar."
+                    tabindex="4">
+                        <i class="fas fa-shopping-bag"></i>
+                        Aldea Moda
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link d-block" href="login.html"
+                    tabindex="5">
+                        <b>Cerrar sesión de Administrador</b>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
