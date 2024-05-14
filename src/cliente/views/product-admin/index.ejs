@@ -121,60 +121,13 @@
 
 <body id="reportsPage">
     <div class="" id="home">
-        <nav class="navbar navbar-expand-xl">
-            <div class="container h-100">
-                <a class="navbar-brand" href="index.html">
-                    <h1 class="tm-site-title mb-0">Administración de productos</h1>
-                </a>
-                <button class="navbar-toggler ml-auto mr-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="fas fa-bars tm-nav-icon"></i>
-                </button>
+        <!--Incluye template ejs de NavBar-->
+        <%- include("template/nav-bar", {paginaActual : 'index'}) %>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav mx-auto h-100">
-                        <li class="nav-item">
-                            <a class="nav-link active " href="index.html">
-                                <i class="far fa-file-alt"></i>
-                                Reportes
-                                <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="products.html">
-                                <i class="fas fa-shopping-cart"></i>
-                                Productos
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="accounts.html">
-                                <i class="far fa-user"></i>
-                                Cuentas
-                            </a>
-                        </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="home.html">
-                            <i class="fas fa-shopping-bag"></i>
-                            Aldea Moda
-                        </a>
-                    </li>
-                </ul>
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link d-block" href="login.html">
-                            <b>Cerrar sesión de Administrador</b>
-                        </a>
-                    </li>
-                    </ul>
-                </div>
-            </div>
-
-        </nav>
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <p class="text-white mt-5 mb-5">Bienvenido de nuevo, <b>Admin</b></p>
+                    <p class=" mt-5 mb-5">Bienvenido de nuevo, <b>Admin</b></p>
                 </div>
             </div>
             <!-- row -->
@@ -190,27 +143,45 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">N º DE PEDIDO</th>
-                                    <th scope="col">ESTADO</th>
-                                    <th scope="col">CLIENTE</th>
-                                    <th scope="col">UBICACIÓN</th>
-                                    <th scope="col">FECHA DE ORDEN</th>
-                                    <th scope="col">ENTREGA</th>
+                                    <th scope="col" 
+                                    tabindex="6"
+                                    aria-label="Encabezado de Columna. Número de pedido.">Nº DE PEDIDO</th>
+                                    <th scope="col"
+                                    tabindex="7"
+                                    aria-label="Encabezado de Columna. Estado del pedido."
+                                    >ESTADO</th>
+                                    <th scope="col"
+                                    tabindex="8"
+                                    aria-label="Encabezado de Columna. Nombre del cliente."
+                                    >CLIENTE</th>
+                                    <th scope="col"
+                                    tabindex="9"
+                                    aria-label="Encabezado de Columna. Ubicación de envío."
+                                    >UBICACIÓN</th>
+                                    <th scope="col"
+                                    tabindex="10"
+                                    aria-label="Encabezado de Columna. Fecha de orden realizada."
+                                    >FECHA DE ORDEN</th>
+                                    <th scope="col"
+                                    tabindex="11"
+                                    aria-label="Encabezado de Columna. Fecha de entrega aproximada."
+                                    >ENTREGA</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <% orders.forEach(function(order){ %>
                                 <tr>
-                                    <th scope="row"><b>#<%= order.id %></b></th>
-                                    <td>
+                                    <th tabindex="12" scope="row"
+                                    aria-label="Número de pedido: <%= order.id %>"><b>#<%= order.id %></b></th>
+                                    <td tabindex="12">
                                         <div class="tm-status-circle <% if (order.status) { %> <%= order.status.toLowerCase() %> <% } %>">
 
                                         </div><%= order.status %>
                                     </td>
-                                    <td><b><%= order.client %></b></td>
-                                    <td><b><%= order.location %></b></td>
-                                    <td><% if (order.order_date) { %> <%= order.order_date.toLocaleDateString() %> <% } %></td>
-                                    <td><% if (order.est_delivery_date) { %> <%= order.est_delivery_date.toLocaleDateString() %> <% } %></td>
+                                    <td tabindex="12"><b><%= order.client %></b></td>
+                                    <td tabindex="12"><b><%= order.location %></b></td>
+                                    <td tabindex="12"><% if (order.order_date) { %> <%= order.order_date.toLocaleDateString() %> <% } %></td>
+                                    <td tabindex="12"><% if (order.est_delivery_date) { %> <%= order.est_delivery_date.toLocaleDateString() %> <% } %></td>
                                 </tr>
                                 <% }); %>
                             </tbody>
