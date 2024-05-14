@@ -282,7 +282,8 @@ app.post('/login.html', function(req, res, next) {
 app.post('/guardar-orden', async (req, res) => {
     try {
         const pool = new Pool(config);        
-        const { name, province, city, postcode} = req.body;
+        const { name, province, city, postcode, nombreProvincia, nombreCanton} = req.body;
+        console.log(req.body);
         /*
         // Crear un objeto con los datos de la orden
         const order = {
@@ -299,7 +300,7 @@ app.post('/guardar-orden', async (req, res) => {
         // Inserta la nueva orden en la base de datos
         const result = await pool.query(
             'INSERT INTO OrderClient (status, client, location, order_date, est_delivery_date) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-            ['Completed', name, province+" / "+city+" / "+ postcode, new Date(), new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toLocaleDateString()]
+            ['Completed', name, nombreProvincia+" / "+nombreCanton+" / "+ postcode, new Date(), new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toDateString()]
         );
         console.log ('Insertado correctamente');
         res.status(201).send('Orden guardada correctamente.');

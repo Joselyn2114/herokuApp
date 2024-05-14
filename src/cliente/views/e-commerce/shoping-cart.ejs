@@ -244,49 +244,22 @@
 											Ubicación
 										</span>
 	
-										<!-- <div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-											<select class="js-select2" name="province" id="province" required aria-label="Seleccionar provincia">
+										<div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
+											<select class="js-select2" name="province" id="province" required aria-label="Seleccionar provincia" onchange="cargarCanton()">
 												<option value="" disabled selected>Seleccione una provincia...</option>
-												<option value="San José">San José</option>
-												<option value="Cartago">Cartago</option>
-												<option value="Heredia">Heredia</option>
-												<option value="Guanacaste">Guanacaste</option>
-												<option value="Puntarenas">Puntarenas</option>
-												<option value="Limón">Limón</option>
 											</select>
 											<div class="dropDownSelect2"></div>
 										</div>
+
+										<input  id="nombreProvincia" name="nombreProvincia" style="display: none;">
+										<input  id="nombreCanton" name="nombreCanton" style="display: none;">
 	
-										<div class="bor8 bg0 m-b-12">
-											<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="city" placeholder="Ciudad / Cantón" required aria-label="Ingrese la ciudad o el cantón">
-										</div>
-
 										<div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-											<select class="js-select2" name="canton" id="city" required aria-label="Seleccionar cantón">
+											<select class="js-select2" name="city" id="city" required aria-label="Seleccionar cantón" onchange="guardaNombreCanton()">
 												<option value="" disabled selected>Seleccione un cantón...</option>
 											</select>
 											<div class="dropDownSelect2"></div>
-										</div> -->
-
-										<!-- Dropdown para seleccionar la provincia -->
-										<div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-											<select class="js-select2" name="province" id="province" required aria-label="Seleccionar provincia">
-												<option value="" disabled selected>Seleccione una provincia...</option>
-												<!-- Itera sobre las provincias del JSON y crea las opciones -->
-												<% for (const [provinciaId, provincia] of Object.entries(provincias)) { %>
-													<option value="<%= provinciaId %>"><%= provincia.nombre %></option>
-												<% } %>
-											</select>
-											<div class="dropDownSelect2"></div>
-										</div>
-			
-										<!-- Dropdown para seleccionar el cantón -->
-										<div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-											<select class="js-select2" name="canton" id="canton" required disabled aria-label="Seleccionar cantón">
-												<option value="" disabled selected>Seleccione un cantón...</option>
-											</select>
-											<div class="dropDownSelect2"></div>
-										</div>
+										</div> 						
 										
 	
 										<div class="bor8 bg0 m-b-22">
@@ -529,15 +502,14 @@
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	
-	<script src="dist/e-commerse/provinciasCantones.json"></script>
-	<!-- Cargar el archivo JSON -->
-	<script>
-	// Define la variable 'provincias' y cárgala con el contenido del archivo JSON
-	var provincias = JSON.stringify(provincias);
-	</script>
+	<script src="dist/e-commerse/provinciasCantones.json" type="json"></script>
 
 	<script>
+
 	    $(document).ready(function() {
+			
+			cargarPronvincias();
+
 	        // Maneja el evento de envío del formulario
 	        $('#checkoutForm').submit(function(event) {
 	            event.preventDefault(); // Evita que el formulario se envíe automáticamente
@@ -556,6 +528,66 @@
 	            });
 	        });
 	    });
+
+		async function cargarPronvincias() {
+            try {
+				const provinciasJsonFile = 'static/e-commerse/provinciasCantones.json';
+                const response = await fetch(provinciasJsonFile);
+                const data = await response.json();
+
+				const provinciasSelect = $('#province');							
+
+				$.each(data.provincias, function(idProvincia, provincia) {
+					const option = document.createElement('option');
+                    option.text = provincia.nombre;
+                    option.value = idProvincia;
+					provinciasSelect.append(option);
+            });
+
+            } catch (error) {
+                console.error('Error al cargar el archivo JSON de Pronvincias y Cantones:', error);
+            }
+        }
+
+		async function cargarCanton(){
+			const idProvinciaSeleccionada = $('#province').val();
+			const nombre = $('#province option:selected').text();
+
+			$('#nombreProvincia').val(nombre);
+			try {
+				const provinciasJsonFile = 'static/e-commerse/provinciasCantones.json';
+                const response = await fetch(provinciasJsonFile);
+                const data = await response.json();
+				const cantonesSelect = $('#city');				
+				cantonesSelect.empty();
+				cantonesSelect.append($('<option>', {
+					value: '',
+					text: 'Seleccione un cantón...',
+					disabled: 'disabled',
+					selected: 'selected'
+				}));
+				$.each(data.provincias, function(idProvincia, provincia) {					
+					if(idProvincia == idProvinciaSeleccionada){
+						$.each(provincia.cantones, function(idCanton, canton){
+							const option = document.createElement('option');
+							option.text = canton.nombre;
+							option.value = idCanton;
+							cantonesSelect.append(option);
+						});
+					}
+					return;
+            });
+
+            } catch (error) {
+                console.error('Error al cargar el archivo JSON de Pronvincias y Cantones:', error);
+            }
+		};
+
+		function guardaNombreCanton(){
+			const nombre = $('#city option:selected').text();
+
+			$('#nombreCanton').val(nombre);
+		}
 	</script>
 
 </body>

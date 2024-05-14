@@ -18,7 +18,7 @@ class OrdersRepository{
                         reject(error);
                     } else {
                         console.log("Conexión exitosa");
-                        client.query('SELECT * FROM OrderClient', (error, res) => {
+                        client.query('SELECT * FROM OrderClient order by id desc', (error, res) => {
                             if (error) {
                                 console.log("Error en select DB --" + error);
                                 reject(error);
