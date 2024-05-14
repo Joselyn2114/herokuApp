@@ -140,33 +140,38 @@
     <div class="container mt-5">
         <div class="row tm-content-row">
             <div class="col-sm-12 col-md-12 col-lg-8  col-xl-12 tm-block-col">
-                <!-- Aquí está el cambio de color de fondo -->
                 <div class="tm-bg-primary-dark tm-block tm-block-products">
                     <form action="/products.html" method="get">
                         <div class="tm-product-table-container">
                             <table class="table table-hover tm-table-small tm-product-table">
                                 <thead>
                                     <tr>
-                                        <th scope="col">&nbsp;</th>
-                                        <th scope="col">NOMBRE DEL PRODUCTO</th>
-                                        <th scope="col">EN ALMACÉN</th>
-                                        <th scope="col">PRECIO</th>
-                                        <th scope="col">&nbsp;</th>
+                                        <th scope="col" tabindex="0">&nbsp;</th>
+                                        <th scope="col" tabindex="0">NOMBRE DEL PRODUCTO</th>
+                                        <th scope="col" tabindex="0">EN ALMACÉN</th>
+                                        <th scope="col" tabindex="0">PRECIO</th>
+                                        <th scope="col" tabindex="0">&nbsp;</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <% products.forEach(function(product) { %>
-                                        <tr>
-                                            <th scope="row"><input type="checkbox" value="<%= product.id %>" name="productIds" /></th>
-                                            <td class="tm-product-name"><a href="/edit-product.html?editProductId=<%= product.id %>&name=<%=product.name%>&price=<%=product.price%>&inStock=<%=product.in_stock%>&categoryName=<%=product.category_name%>&imageName=<%=product.image_name%>" style="color: inherit"><%= product.name %></a></td>
-                                            <td><%= product.in_stock %></td>
-                                            <td><%= product.price %></td>
-                                            <td>
-                                                <a href="/products.html?borrarProducto=<%= product.id %>" class="tm-product-delete-link">
-                                                    <i class="far fa-trash-alt tm-product-delete-icon"></i>
-                                                </a>
-                                            </td>
-                                        </tr>
+                                    <tr>
+                                        <td scope="row" tabindex="0">
+                                            <input type="checkbox" value="<%= product.id %>" name="productIds" />
+                                        </td>
+                                        <td class="tm-product-name">
+                                            <a href="/edit-product.html?editProductId=<%= product.id %>&name=<%=product.name%>&price=<%=product.price%>&inStock=<%=product.in_stock%>&categoryName=<%=product.category_name%>&imageName=<%=product.image_name%>"
+                                                style="color: inherit" tabindex="0"><%= product.name %></a>
+                                        </td>
+                                        <td tabindex="0"><%= product.in_stock %></td>
+                                        <td tabindex="0"><%= product.price %></td>
+                                        <td tabindex="0">
+                                            <a href="/products.html?borrarProducto=<%= product.id %>" class="tm-product-delete-link"
+                                                tabindex="0" aria-label="Eliminar <%= product.name %>">
+                                                <i class="far fa-trash-alt tm-product-delete-icon" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
                                     <% }); %>
                                 </tbody>
                             </table>

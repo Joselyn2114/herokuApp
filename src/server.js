@@ -14,7 +14,8 @@ const accountsRepository = require("./servidor/accountsRepository");
 const categoriesRepository = require("./servidor/categoriesRepository");
 
 const { Pool } = require('pg');
-
+const fs = require('fs');
+//const jsonPath = require("diste-commerse/provinciasCantones");
 
 var app = express();
 //MOTOR DE PLANTILLAS
@@ -307,6 +308,27 @@ app.post('/guardar-orden', async (req, res) => {
         res.status(500).send('Error interno del servidor.');
     }
 });
+
+// // Función para cargar el JSON desde el archivo
+// function cargarJSON(jsonPath) {
+//     try {
+//         const jsonData = fs.readFileSync(jsonPath, 'utf8');
+//         return JSON.parse(jsonData);
+//     } catch (error) {
+//         console.error('Error al cargar el archivo JSON:', error);
+//         return null;
+//     }
+// }
+
+// // JSON con la información de los cantones
+// const cantonesData = cargarJSON(jsonPath);
+
+// // Si el JSON se cargó correctamente, puedes utilizarlo para cargar dinámicamente los cantones
+// if (cantonesData) {
+//     // Aquí puedes colocar tu lógica para cargar los cantones basados en la provincia seleccionada
+// } else {
+//     console.error('No se pudo cargar el archivo JSON.');
+// }
 
 app.listen(app.get('port'),()=>{ //listener en el puesto especificado
     console.log('servidor activo');//Una vez inicializado mostrará esto por consola.
