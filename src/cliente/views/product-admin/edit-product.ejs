@@ -38,7 +38,7 @@
                   <div class="form-group mb-3">
                     <label for="name">Nombre del producto
                     </label>
-                    <input id="name" value ="<%=product.name%>" name="name" type="text" class="form-control validate" required />
+                    <input id="name" pattern="[^\s].*" title="No se permiten espacios en blanco" value ="<%=product.name%>" name="name" type="text" class="form-control validate" required />
                   </div>
                   <div class="form-group mb-3">
                     <label for="category">Categoría</label>
@@ -65,6 +65,8 @@
                             value ="<%=product.price%>"
                             type="text"
                             class="form-control validate"
+                            pattern="[0-9]+"
+                            title="El precio debe contener solo números"
                             required
                           />
                         </div>
@@ -79,6 +81,8 @@
                             value ="<%=product.inStock%>"
                             type="text"
                             class="form-control validate"
+                            pattern="[0-9]+"
+                            title="Las existencias deben contener solo números"
                             required
                           />
                           <input
@@ -94,6 +98,7 @@
                             value ="<%=product.imageName%>"
                             type="text"
                             style="display: none;"
+                            alt="<%=product.image_description%>"
                           />
                         </div>
                   </div>                                  

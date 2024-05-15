@@ -41,7 +41,7 @@
                   <div class="form-group mb-3">
                     <label for="name">Nombre del producto
                     </label>
-                    <input id="name" name="name" type="text" class="form-control validate" required />
+                    <input id="name" name="name"  pattern="[^\s].*" title="No se permiten espacios en blanco" type="text" class="form-control validate" required />
                   </div>
                   <div class="form-group mb-3">
                     <label for="category">Categoría</label>
@@ -68,6 +68,8 @@
                             name="price"
                             type="text"
                             class="form-control validate"
+                            pattern="[0-9]+"
+                            title="El precio debe contener solo números"
                             required
                           />
                         </div>
@@ -81,6 +83,8 @@
                             name="in_stock"
                             type="text"
                             class="form-control validate"
+                            pattern="[0-9]+"
+                            title="Las existencias deben contener solo números"
                             required
                           />
                           <input

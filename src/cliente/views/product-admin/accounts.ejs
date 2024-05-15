@@ -110,7 +110,9 @@
                                     id="name"
                                     name="name"
                                     type="text"
-                                    class="form-control validate"
+                                    class="form-control validate" 
+                                    pattern="[^\s].*" 
+                                    title="No se permiten espacios en blanco"
                             />
                         </div>
                         <div class="form-group col-lg-6">
@@ -120,6 +122,8 @@
                                     name="email"
                                     type="email"
                                     class="form-control validate"
+                                    pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+                                    title="Ingrese una dirección de correo electrónico válida"
                             />
                         </div>
                         <div class="form-group col-lg-6">
@@ -131,6 +135,10 @@
                                     type="password"
                                     class="form-control validate"
                                     aria-describedby="showPassword"
+                                    required
+                                    pattern="[^\s].*"
+                                    title="No se permiten espacios en blanco"
+                                    aria-label="Nombre de la cuenta"
                             />
                             <div class="input-group-append">
                                 <button class="btn btn-outline-secondary" type="button" id="showPassword">
@@ -146,6 +154,10 @@
                                     name="password2"
                                     type="password"
                                     class="form-control validate"
+                                    required
+                                    pattern="[^\s].*"
+                                    title="No se permiten espacios en blanco"
+                                    aria-label="Nombre de la cuenta"
                             />
                         </div>
                         <div class="form-group col-lg-6">
@@ -155,6 +167,9 @@
                                     name="phone"
                                     type="tel"
                                     class="form-control validate"
+                                    pattern="[0-9]+"
+                                    title="El teléfono debe contener solo números"
+                                    aria-label="Teléfono"
                             />
                         </div>
                         <div class="form-group col-lg-6">                            
