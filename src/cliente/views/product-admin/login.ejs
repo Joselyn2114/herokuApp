@@ -159,12 +159,12 @@
                   />
                 </div>
                 <div class="form-group mt-3">
-                  <label for="password">Contraseña</label>
+                  <label for="password1">Contraseña</label>
                   <input
-                    name="password"
+                    name="password1"
                     type="password"
                     class="form-control validate"
-                    id="password"
+                    id="password1"
                     value=""
                     required
                   />
@@ -189,9 +189,116 @@
                 ¿Olvidó su contraseña?
               </a>
             </div>
-            <a class="mt-3 btn btn-link btn-block text-uppercase" href="/accounts.html">
+            <a class="mt-3 btn btn-link btn-block text-uppercase" href="#" data-toggle="modal" data-target="#registroModal">
               ¿No tiene cuenta? Registrarse
             </a>
+
+<!-- Modal de registro -->
+              <div class="modal fade" id="registroModal" tabindex="-1" role="dialog" aria-labelledby="registroModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="registroModalLabel"style="color: #8d6fb6; font-weight: bold;">Registro de Cuenta</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <form id="registroForm" action='/updateAccount' method="post" class="tm-signup-form row" onsubmit="return validateForm()">
+                        <div class="form-group col-lg-6">
+                          <label for="name"style="color: #8d6fb6;">Nombre de la cuenta</label>
+                          <input
+                            id="name"
+                            name="name"
+                            type="text"
+                            class="form-control validate"
+                            required
+                            pattern="[^\s].*"
+                            title="No se permiten espacios en blanco"
+                            aria-label="Nombre de la cuenta"
+                          />
+                        </div>
+                        <div class="form-group col-lg-6">
+                          <label for="email"style="color: #8d6fb6;">Cuenta de email</label>
+                          <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            class="form-control validate"
+                            required
+                            pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+                            title="Ingrese una dirección de correo electrónico válida"
+                            aria-label="Cuenta de email"
+                          />
+                        </div>
+                        <div class="form-group col-lg-6">
+                          <label for="password"style="color: #8d6fb6;">Contraseña</label>
+                          <div class="input-group">
+                            <input
+                              id="password"
+                              name="password"
+                              type="password"
+                              class="form-control validate"
+                              aria-describedby="showPassword"
+                              required
+                              aria-label="Contraseña"
+                            />
+                            <div class="input-group-append">
+                              <button class="btn btn-outline-secondary" type="button" id="showPassword" aria-label="Mostrar contraseña">
+                                <i class="fa fa-eye" aria-hidden="true"></i>
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group col-lg-6">
+                          <label for="password2"style="color: #8d6fb6;">Escriba la contraseña otra vez</label>
+                          <input
+                            id="password2"
+                            name="password2"
+                            type="password"
+                            class="form-control validate"
+                            required
+                            aria-label="Escriba la contraseña otra vez"
+                          />
+                        </div>
+                        <div class="form-group col-lg-6">
+                          <label for="phone"style="color: #8d6fb6;">Teléfono</label>
+                          <input
+                            id="phone"
+                            name="phone"
+                            type="tel"
+                            class="form-control validate"
+                            pattern="[0-9]+"
+                            title="El teléfono debe contener solo números"
+                            aria-label="Teléfono"
+                          />
+                        </div>
+                        <div class="form-group col-lg-6">
+                          <input
+                            id="accountId"
+                            name="id"
+                            type="text"
+                            style="display: none;"
+                            value="-1"
+                            aria-hidden="true"
+                          />
+                        </div>
+                        <div class="form-group col-lg-12">
+                          <button
+                            type="submit"
+                            class="btn btn-primary btn-block text-uppercase"
+                            id="btnCrearCuenta"
+                          >
+                            Crear Cuenta
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
           </div>
         </div>
       </div>
@@ -211,6 +318,28 @@
     function toggleContrast() {
       document.body.classList.toggle('contrast-mode');
     }
+    function validateForm() {
+    var password = document.getElementById("password").value;
+    var password2 = document.getElementById("password2").value;
+
+    if (password !== password2) {
+      alert("Las contraseñas no coinciden");
+      return false;
+    }
+
+    return true;
+  }
+
+  $('#showPassword').click(function() {
+        var tipo = $('#password').attr('type');
+        if (tipo === 'password') {
+            $('#password').attr('type', 'text');
+            $('#showPassword i').removeClass('fa-eye').addClass('fa-eye-slash');
+        } else {
+            $('#password').attr('type', 'password');
+            $('#showPassword i').removeClass('fa-eye-slash').addClass('fa-eye');
+        }
+    });
   </script>
 </body>
 

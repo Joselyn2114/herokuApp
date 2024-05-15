@@ -256,13 +256,13 @@ app.get('/home.html', function(req, res, next) {
 });
 
 app.post('/login.html', function(req, res, next) {
-    const { email, password } = req.body;
+    const { email, password1 } = req.body;
     console.log("Correo recibido:", email);
-    console.log("Contraseña recibida:", password);
+    console.log("Contraseña recibida:", password1);
     // Realiza una consulta en la base de datos para verificar las credenciales del usuario
     oAccountsRepository.getAccountByEmail(email)
         .then(account => {
-            if (account && account.password === password) {
+            if (account && account.password === password1) {
                 console.error("Validación de credenciales exitosa");
                 // Las credenciales son válidas, redirige al usuario al sitio de administración de productos 
                 res.redirect('/index.html');
