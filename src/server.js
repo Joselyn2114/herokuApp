@@ -56,14 +56,14 @@ const oCategoriesRepository = new categoriesRepository(config);
 
 
 app.get('/',function(req,res,next){//Creamos las rutas o secciones que va tener nuestra página. 
-    oOrdersRepository.getOrders()
+    oProductsRepository.getProductos()
     .then(data => {
-        res.render("product-admin/index", {orders : data});
+        res.render("e-commerce/home", { products: data });
     })
     .catch(error => {
-        console.error("Error al obtener ordenes:", error);
+        console.error("Error al obtener productos para home e-commerce:", error);
         // Manejar errores
-    });     
+    });        
 });
 
 app.get('/index.html',function(req,res,next){
