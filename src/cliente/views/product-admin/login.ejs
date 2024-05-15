@@ -120,6 +120,7 @@
       border-color: #f5c6cb;
       font-size: smaller;
     }
+
   </style>
 </head>
 
@@ -298,6 +299,51 @@
                 </div>
               </div>
 
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#notificationModal" id="openModalButton" style="display:none;">
+                Launch modal
+              </button>
+
+              <!-- Modal de error de contraseñas -->
+              <div class="modal fade" id="notificationModal" tabindex="-1" role="dialog" aria-labelledby="notificationModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header" style="background-color: #8d6fb6; color: #fff;">
+                      <h5 class="modal-title" id="notificationModalLabel">Error al crear cuenta</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Cerrar</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p id="notificationMessage">Las contraseñas no coinciden</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary btn-block text-uppercase" data-dismiss="modal" aria-label="Cerrar">Cerrar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Modal de éxito al agregar cuenta -->
+              <div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header" style="background-color: #8d6fb6; color: #fff;">
+                      <h5 class="modal-title" id="successModalLabel">Cuenta creada exitosamente</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Cerrar</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                      <p id="successMessage" aria-live="polite">¡La cuenta ha sido creada exitosamente!</p>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary btn-block text-uppercase" data-dismiss="modal" aria-label="Cerrar">Cerrar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
           </div>
         </div>
@@ -318,12 +364,13 @@
     function toggleContrast() {
       document.body.classList.toggle('contrast-mode');
     }
+
     function validateForm() {
     var password = document.getElementById("password").value;
     var password2 = document.getElementById("password2").value;
 
     if (password !== password2) {
-      alert("Las contraseñas no coinciden");
+      $('#notificationModal').modal('show');
       return false;
     }
 
@@ -340,6 +387,40 @@
             $('#showPassword i').removeClass('fa-eye-slash').addClass('fa-eye');
         }
     });
+
+      // Esta función muestra la notificación de éxito al agregar una cuenta
+    function showSuccessNotification() {
+      $('#successModal').modal('show');
+        setTimeout(function() {
+        window.location.href = '/index.html'; // Reemplaza '/otra-vista' con la URL deseada
+      }, 3000);
+    }
+
+      // Evento que se ejecuta cuando el formulario se envía correctamente
+    $('#registroForm').submit(function(event) {
+      event.preventDefault(); // Evita que el formulario se envíe automáticamente
+      var form = $(this);
+      if (validateForm()) {
+        // Aquí podrías realizar cualquier otra acción necesaria antes de enviar el formulario
+        // Por ejemplo, enviar datos a través de AJAX
+        $.ajax({
+          type: form.attr('method'),
+          url: form.attr('action'),
+          data: form.serialize(),
+          success: function(data) {
+            // Si la operación de agregar la cuenta es exitosa, mostramos la notificación de éxito
+            showSuccessNotification();
+          },
+          error: function(xhr, status, error) {
+            // Manejar cualquier error si la operación de agregar la cuenta falla
+            console.error("Error al agregar la cuenta:", error);
+            // Puedes mostrar una notificación de error aquí si lo deseas
+          }
+        });
+      }
+    });
+
+
   </script>
 </body>
 
